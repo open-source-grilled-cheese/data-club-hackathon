@@ -57,7 +57,7 @@ def translate_gender(gender_val):
         other_ident = ['nb', 'trans', 'hu','queer']
         if any(i in gender_val for i in other_ident):
             return 'Other'
-        return 'Female'
+        return 'Male'
     elif gender_val in ['f', 'fm', 'afab']:
         return 'Female'
     elif gender_val in ['m']:
