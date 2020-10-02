@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 # Load in File
-filename = "mental-heath-in-tech-2016.csv"
+filename = "mental-health-in-tech-2016.csv"
 df = pd.read_csv(filename)
 
 # Make column names easier to work with
