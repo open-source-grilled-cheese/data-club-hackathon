@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 # Load in File
-filename = "mentalhealth.csv"
+filename = "mental-heath-in-tech-2016.csv"
 df = pd.read_csv(filename)
 
 # Make column names easier to work with
@@ -30,6 +30,44 @@ df['prodAffectPercent'] = df['prodAffectPercent'].astype(prodAffectPercentCat)
 
 ## possible ordered: leaveDifficulty
 ## needs to be fixed: gender
+def translate_gender(gender_val):
+    """
+    Translates a gender to "Male", "Female", or "Other"
+    """
+    # Base case
+    if type(gender_val) is not str:
+        return 'Other'
+
+    # Clean the value
+    gender_val = ''.join([i for i in gender_val if i.isalpha() or i.isspace()]).lower().strip()
+    
+    # Decision tree
+    if 'woman' in gender_val:
+        if 'trans' in gender_val or 'queer' in gender_val:
+            return 'Other'
+        return 'Female'
+    elif 'fem' in gender_val:
+        other_ident = ['rough', 'bodied', 'multi', 'fluid','other']
+        if any(i in gender_val for i in other_ident):
+            return 'Other'
+        return 'Female'
+    elif 'dude' in gender_val:
+        return 'Male'
+    elif 'ma' in gender_val:
+        other_ident = ['nb', 'trans', 'hu','queer']
+        if any(i in gender_val for i in other_ident):
+            return 'Other'
+        return 'Female'
+    elif gender_val in ['f', 'fm', 'afab']:
+        return 'Female'
+    elif gender_val in ['m']:
+        return 'Male'
+    else:
+        return 'Other'
+    
+        
+# Transform genders
+df['gender'] = df['gender'].map(translate_gender, na_action=None).fillna('Other')
 
 # Creating a Bool column if a person is each work position
 # Categories for work positions
