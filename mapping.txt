@@ -1,3 +1,4 @@
+Column Header                 |   Question
 selfEmployed                  |   "Are you self-employed?"
 nEmployees                    |   "How many employees does your company or organization have?"
 techComp                      |   "Is your employer primarily a tech company/organization?"
