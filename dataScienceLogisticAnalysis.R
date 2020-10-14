@@ -3,7 +3,7 @@ library(plyr)
 library(readr)
 
 # Reading in data from file
-newdata <- read_csv("newdata.csv")
+newdata <- read_csv("cleaned_mental-health-in-tech-2016.csv")
 
 # Getting only rows of people who are not self-employed
 work = newdata[newdata$selfEmployed == F,]
