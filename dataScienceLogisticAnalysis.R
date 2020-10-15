@@ -37,3 +37,14 @@ pval # since p-val is high (> 0.05), we should use the smaller model
 # Hoslem test- since p-value is high, shows that the model actually fits well
 library(ResourceSelection)
 hoslem.test(model.smaller$y, fitted(model.smaller))
+
+# ROC curve
+library(ROCR)
+pred = prediction(model.smaller$fitted.values, as.factor(work$discussSupervisor))
+perf = performance(pred, measure = "tpr", x.measure = "fpr")
+plot(perf, colorize=T)
+abline(a=1, b=-1)
+
+# Area under curve
+auc.tmp = performance(pred, "auc")
+auc = as.numeric(auc.tmp@y.values) # Since over 80%, it is a very good model for classification
