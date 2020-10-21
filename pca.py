@@ -71,7 +71,7 @@ def embed_categorical(df):
         # if df[col].dtype != 'bool':
             # print(col)
         # print(df[col].dtype)
-        print(f'{col}: {df[col].dtype}')
+        # print(f'{col}: {df[col].dtype}')
 
 
         # my_col = df[col].fillna(method='pad')
@@ -79,6 +79,11 @@ def embed_categorical(df):
         df[col] = le.fit_transform(df[col])
 
     return df
+
+def main():
+    plt.scatter(x_d, y_d, color='g')
+    plt.scatter(x_n, y_n, color='r')
+    plt.show()
 
 df_trans = remove_self(df)
 df_trans = filter_categories(df_trans)
@@ -98,6 +103,10 @@ non_discussors = pca.transform(non_discussors)
 x_d, y_d = list(zip(*discussors))
 x_n, y_n = list(zip(*non_discussors))
 
-plt.scatter(x_d, y_d, color='g')
-plt.scatter(x_n, y_n, color='r')
-plt.show()
+discussorX = x_d
+discussorY = y_d
+nondiscussorX = x_n
+nondiscussorY = y_n
+
+if __name__ == "__main__":
+    main()
