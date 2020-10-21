@@ -5,7 +5,6 @@ import plotly.graph_objects as go
 
 # load in the dataset
 df = pd.read_pickle('mhit.pd')
-gender = df.gender.value_counts()
 
 # create custom template off of plotly_dark to match the site
 pio.templates["mhit"] = go.layout.Template(dict(layout=go.Layout(
@@ -31,6 +30,7 @@ pio.templates["mhit"] = go.layout.Template(dict(layout=go.Layout(
 pio.templates.default = "plotly_dark+mhit"
 
 # create the bar graph
+gender = df.gender.value_counts()
 fig = px.bar(gender, 
     y=["Male", "Female", "Gender\nminority"], 
     x=gender.array, 
@@ -41,13 +41,24 @@ fig = px.bar(gender,
         "x": "Responses"
     }
 )
+fig.write_html("docs/gender.html")
 
-# save the figure to an html doc
-fig.write_html("docs/plotly.html")
+fig = px.bar(df.nEmployees.value_counts().sort_index(),
+    title="Responses by Company Size",
+    labels={
+        "index": "Employees in Company",
+        "value": "Responses"
+    }
+)
+fig.update_layout(showlegend=False)
+fig.write_html("docs/company_size.html")
+
+figs = ["docs/gender.html", "docs/company_size.html"]
 
 # kinda hacky, but load the custom font into the generated HTML
-with open("docs/plotly.html", "r+") as f:
-    l = f.readlines()
-    l[1] = '<head><meta charset="utf-8" /><link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,600;0,900;1,700&display=swap" rel="stylesheet"></head>'
-    f.seek(0)
-    f.writelines(l)
+for figure in figs:
+    with open(figure, "r+") as f:
+        l = f.readlines()
+        l[1] = '<head><meta charset="utf-8"/><link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,600;0,900;1,700&display=swap" rel="stylesheet"></head>'
+        f.seek(0)
+        f.writelines(l)
