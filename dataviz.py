@@ -22,9 +22,9 @@ pio.templates["mhit"] = go.layout.Template(dict(layout=go.Layout(
     },
     paper_bgcolor="black",
     plot_bgcolor="black",
-    margin={
-        "pad": 20
-    },
+    margin=dict(
+        pad=20
+    ),
     colorway=["#1ae843"]
 )))
 pio.templates.default = "plotly_dark+mhit"
@@ -53,7 +53,48 @@ fig = px.bar(df.nEmployees.value_counts().sort_index(),
 fig.update_layout(showlegend=False)
 fig.write_html("docs/company_size.html")
 
-figs = ["docs/gender.html", "docs/company_size.html"]
+import pca
+fig = px.scatter(x=pca.discussorX, y=pca.discussorY)
+fig.add_trace(
+    go.Scatter(
+        x=pca.nondiscussorX,
+        y=pca.nondiscussorY,
+        mode="markers",
+        marker=dict(
+            color="#e8961a"
+        )
+    )
+)
+fig.update_layout(
+    showlegend=False,
+    xaxis_title="",
+    yaxis_title="",
+    xaxis=dict(
+        showgrid=False,
+        zeroline=False
+    ),
+    yaxis=dict(
+        showgrid=False,
+        zeroline=False
+    ),
+    title="Principle Component Analysis Plot"
+)
+fig.write_html("docs/pca.html")
+
+aic = pd.read_csv('aic.csv')
+fig = px.bar(aic.sort_values(by="Slope"), 
+    x="Question", 
+    y="Slope", 
+    title="Logistic Regression Model Weights")
+fig.update_layout(
+    width=1500,
+    margin=dict(
+        r=50
+    )
+)
+fig.write_html("docs/aic.html")
+
+figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html", "docs/aic.html"]
 
 # kinda hacky, but load the custom font into the generated HTML
 for figure in figs:
