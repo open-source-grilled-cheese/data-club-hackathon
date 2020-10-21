@@ -22,9 +22,9 @@ pio.templates["mhit"] = go.layout.Template(dict(layout=go.Layout(
     },
     paper_bgcolor="black",
     plot_bgcolor="black",
-    margin={
-        "pad": 20
-    },
+    margin=dict(
+        pad=20
+    ),
     colorway=["#1ae843"]
 )))
 pio.templates.default = "plotly_dark+mhit"
@@ -81,7 +81,20 @@ fig.update_layout(
 )
 fig.write_html("docs/pca.html")
 
-figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html"]
+aic = pd.read_csv('aic.csv')
+fig = px.bar(aic.sort_values(by="Slope"), 
+    x="Question", 
+    y="Slope", 
+    title="Logistic Regression Model Weights")
+fig.update_layout(
+    width=1500,
+    margin=dict(
+        r=50
+    )
+)
+fig.write_html("docs/aic.html")
+
+figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html", "docs/aic.html"]
 
 # kinda hacky, but load the custom font into the generated HTML
 for figure in figs:
