@@ -4,7 +4,7 @@ import plotly.io as pio
 import plotly.graph_objects as go
 
 # load in the dataset
-df = pd.read_pickle('mhit.pd')
+df = pd.read_pickle('data/mhit.pd')
 
 # create custom template off of plotly_dark to match the site
 pio.templates["mhit"] = go.layout.Template(dict(layout=go.Layout(
@@ -81,14 +81,14 @@ fig.update_layout(
 )
 fig.write_html("docs/pca.html")
 
-aic = pd.read_csv('aic.csv')
+aic = pd.read_csv('data/aic.csv')
 fig = px.bar(aic.sort_values(by="Slope"), 
     x="Question", 
     y="Slope", 
     title="Logistic Regression Model Weights")
 fig.write_html("docs/aic.html")
 
-pvals = pd.read_csv('logistic_regression.csv')
+pvals = pd.read_csv('data/logistic_regression.csv')
 fig = px.bar(pvals.sort_values(by='p-value'), 
     x="Question",y="p-value", 
     log_y=True,
@@ -96,7 +96,7 @@ fig = px.bar(pvals.sort_values(by='p-value'),
 )
 fig.write_html("docs/pval.html")
 
-train = pd.read_csv('best_calc.csv')
+train = pd.read_csv('data/best_calc.csv')
 fig = px.bar(train,
     title="Accuracy of Model on Training/Validation Datasets",
     y="Dataset",
@@ -106,7 +106,7 @@ fig = px.bar(train,
 fig.update_xaxes(nticks=10)
 fig.write_html("docs/training.html")
 
-df = pd.read_csv("cleaned_mental-health-in-tech-2016.csv")
+df = pd.read_csv("data/cleaned_mental-health-in-tech-2016.csv")
 short = df.loc[~df.selfEmployed].head(10)
 fig = go.Figure(data=go.Table(
     header=dict(
