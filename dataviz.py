@@ -103,6 +103,7 @@ fig = px.bar(train,
     x="Prediction Accuracy (%)",
     orientation="h"
 )
+fig.update_xaxes(nticks=10)
 fig.write_html("docs/training.html")
 
 figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html", "docs/aic.html", "docs/pval.html", "docs/training.html"]
