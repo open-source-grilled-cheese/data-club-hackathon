@@ -87,7 +87,7 @@ fig = px.bar(aic.sort_values(by="Slope"),
     y="Slope", 
     title="Logistic Regression Model Weights")
 fig.update_layout(
-    width=1500,
+    width=1200,
     margin=dict(
         r=50
     )

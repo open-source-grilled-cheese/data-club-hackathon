@@ -9,6 +9,7 @@
     <link rel="icon" href="/data-club-hackathon/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="tachyons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,600;0,900;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,600;0,900;1,700&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: black;
@@ -28,6 +29,12 @@
             margin: auto;
             display: block;
             width: 20%;
+        }
+        .aic-plot {
+            width: 65%;
+        }
+        p {
+            text-indent: 3em;
         }
     </style>
     <meta charset="UTF-8">
@@ -66,8 +73,16 @@
             <h2 id="slide-title1" class="f1 fw6">$ the dataset</h2>
         </div>
         <div class="fl w-50 pa4">
-            <p class="tr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dapibus tincidunt quam ut suscipit. Nam vehicula eleifend enim, vel rhoncus lorem laoreet sit amet. Duis eleifend est sapien, nec lobortis purus lobortis nec. Sed at pretium nibh. Nam tellus nunc, ultrices nec ante non, dignissim pellentesque sapien. Morbi varius vehicula consequat. Curabitur ut auctor dui. Curabitur tincidunt faucibus felis a consequat. Integer eu neque quis est pellentesque auctor et non libero. Duis ut lorem id nibh porttitor posuere vitae ut eros. Nunc euismod ac mi ac scelerisque. In placerat, sem et condimentum accumsan, purus dui lobortis ante, in suscipit lectus magna eu est. Nunc porta tellus id libero tempor dignissim. In et imperdiet nulla. Vestibulum augue nunc, molestie ut pharetra in, tincidunt quis augue.</p>
-            <p class="tr">Vivamus porttitor tellus eu ex imperdiet vulputate. Ut vitae leo sed quam viverra semper sit amet eu dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras nec tincidunt sem, ut tempor dui. Aliquam neque enim, tempus quis augue sed, tempor scelerisque massa. Vestibulum eget orci erat. Sed imperdiet vulputate mauris eu euismod. Vestibulum id euismod sem. Vestibulum fringilla ullamcorper egestas. Aenean ornare suscipit nulla, a maximus arcu egestas id.</p>
+            <p class="tj f4">
+                [[Open Sourcing Mental Illness (OSMI)]link is a non-profit corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities.]cite
+                Every year, OSMI conducts their [Mental Health in Tech survey]link, [aiming to measure attitudes towards mental health in the tech workplace and examine the frequency of mental health disorders among tech workers]cite.
+            </p>
+            <p class="tj f4">
+                We chose to analyze the 2016 OSMI Mental Health in Tech survey (full dataset available on the [OSMI website]link and [Kaggle](link), as the survey questions and number of respondents changed between years, and the 2016 survey had the most respondents overall (1,467 participants).
+            </p>
+            <p class="tj f4">
+                Our goal was to answer one question: how comfortable are tech workers talking about mental illness in the workplace? 
+            </p>
         </div>
         <div class="pa4 fl w-50">
             <img class="img1" src="csv.png" alt="" srcset="">
@@ -84,12 +99,28 @@
     <iframe class="ph5 vh-50 w-40" src="company_size.html" frameborder="0"></iframe>
 
     <div class="vh-100 w-100 dt ph5">
-        <h2 id="slide-title2" class="f1 fw6">$ cleaning the data</h2>
-        <h5 class="lh-copy normal f4">
-            We used <a class="link blue" href="https://python.org">Python</a> with the 
-            <a class="link blue" href="https://pandas.pydata.org">pandas</a> library to clean and prepare our data for analysis -- the script we wrote is on 
-            <a class="link blue" href="https://github.com/open-source-grilled-cheese/data-club-hackathon/blob/master/cleaningdata.py">our repository</a>.
-        </h5>
+        <div class="fl w-100">
+            <h2 id="slide-title2" class="f1 fw6">$ data cleaning</h2>
+        </div>
+        <div class="fl w-50">
+            <p class="lh-copy normal f4">
+                We used <a class="link blue" href="https://python.org">Python</a> with the 
+                <a class="link blue" href="https://pandas.pydata.org">pandas</a> library to clean and prepare our data for analysis -- the script we wrote is on 
+                <a class="link blue" href="https://github.com/open-source-grilled-cheese/data-club-hackathon/blob/master/cleaningdata.py">our repository</a>.
+            </p>
+            <p class="lh-copy normal f4">
+                First, we limited the responses to those which indicated they weren’t self-employed, since we were interested in learning about mental illness in the context of workplaces where employees had a direct supervisor.
+            </p>
+            <p class="lh-copy normal f4">
+                Then, for open-ended response fields we either consolidated (in the case of gender, which we separated into male, female, and gender minority groups) or omitted (in the case of questions asking the respondent to describe their reasoning or experience).
+            </p>
+            <p class="lh-copy normal f4">
+                Finally, we separated multi-response categories, such as those picking the respondent’s type of work from a drop-down list, into binary components, where each possible response became either a “yes” or a “no.”
+            </p>
+
+        </div>
+        <div class="fl w-50">
+        </div>
     </div>
 
     <div class="vh-100 w-100 dt ph5">
@@ -103,8 +134,10 @@
         </div>
     </div>
 
-    <iframe class="vh-75 w-100 center db" src="aic.html" frameborder="0"></iframe>
+    
+    <iframe scrolling="no" class="overflow-hidden vh-75 center db aic-plot" src="aic.html" frameborder="0"></iframe>
     <iframe class="pl5 vh-75 w-75 center db" src="pca.html" frameborder="0"></iframe>
+    <iframe class="pl5 vh-75 w-75 center db" src="distpreds.html" frameborder="0"></iframe>
 
     <script src="type_animation.js"></script>
 </body>
