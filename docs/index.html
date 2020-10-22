@@ -74,11 +74,11 @@
         </div>
         <div class="fl w-50 pa4">
             <p class="tl f4 lh-copy">
-                [[Open Sourcing Mental Illness (OSMI)]link is a non-profit corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities.]cite
-                Every year, OSMI conducts their [Mental Health in Tech survey]link, [aiming to measure attitudes towards mental health in the tech workplace and examine the frequency of mental health disorders among tech workers]cite.
+                <a class="link blue" href="https://osmihelp.org/">Open Sourcing Mental Illness (OSMI)</a> is a non-profit corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities.<sup><a class="link blue" href="#l1">[1]</a></sup>
+                Every year, OSMI conducts their <a class="link blue href="">Mental Health in Tech survey</a>, aiming to measure attitudes towards mental health in the tech workplace and examine the frequency of mental health disorders among tech workers<sup><a class="link blue" href="#l2">[2]</a></sup>.
             </p>
             <p class="tl f4 lh-copy">
-                We chose to analyze the 2016 OSMI Mental Health in Tech survey (full dataset available on the [OSMI website]link and [Kaggle](link), as the survey questions and number of respondents changed between years, and the 2016 survey had the most respondents overall (1,467 participants).
+                We chose to analyze the 2016 OSMI Mental Health in Tech survey (full dataset available on the <a class="link blue" href="https://osmi.typeform.com/report/Ao6BTw/U76z">OSMI website</a>and <a class="link blue" href="https://www.kaggle.com/osmi/mental-health-in-tech-2016">Kaggle</a>, as the survey questions and number of respondents changed between years, and the 2016 survey had the most respondents overall (1,467 participants).
             </p>
             <p class="tl f4 lh-copy">
                 Our goal was to answer one question: how comfortable are tech workers talking about mental illness in the workplace? 
@@ -128,23 +128,55 @@
 
     <div class="vh-100 w-100 dt ph5">
         <h2 id="slide-title3" class="f1 fw6 slide-title">$ building the model</h2>
-        <div class="pa4 fl w-50">
-            <img class="img1" src="ROCplot.png" alt="" srcset="">
+        <div class="fl w-100 pa4">
+            <p class="tl lh-copy">
+                We chose to use a logistic model to predict whether a person definitely felt comfortable talking about a mental health disorder 
+                with their direct supervisors, answering “Yes” on the survey, or possibly did not feel comfortable doing so, answering “Maybe” or 
+                “No” on the survey.
+            </p>
         </div>
-        <div class="fl w-50 pa4">
-            <p class="tl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dapibus tincidunt quam ut suscipit. Nam vehicula eleifend enim, vel rhoncus lorem laoreet sit amet. Duis eleifend est sapien, nec lobortis purus lobortis nec. Sed at pretium nibh. Nam tellus nunc, ultrices nec ante non, dignissim pellentesque sapien. Morbi varius vehicula consequat. Curabitur ut auctor dui. Curabitur tincidunt faucibus felis a consequat. Integer eu neque quis est pellentesque auctor et non libero. Duis ut lorem id nibh porttitor posuere vitae ut eros. Nunc euismod ac mi ac scelerisque. In placerat, sem et condimentum accumsan, purus dui lobortis ante, in suscipit lectus magna eu est. Nunc porta tellus id libero tempor dignissim. In et imperdiet nulla. Vestibulum augue nunc, molestie ut pharetra in, tincidunt quis augue.</p>
-            <p class="tl">Vivamus porttitor tellus eu ex imperdiet vulputate. Ut vitae leo sed quam viverra semper sit amet eu dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras nec tincidunt sem, ut tempor dui. Aliquam neque enim, tempus quis augue sed, tempor scelerisque massa. Vestibulum eget orci erat. Sed imperdiet vulputate mauris eu euismod. Vestibulum id euismod sem. Vestibulum fringilla ullamcorper egestas. Aenean ornare suscipit nulla, a maximus arcu egestas id.</p>
+        <div class="pa4 fl w-50">
+            <img class="img1" src="aic_first.png" alt="" srcset="">
+        </div>
+        <div class="pa4 fl w-50">
+            <p class="tl lh-copy">
+                The first model we built was fit with the entire 34-variable dataset. While it passed the model utility test, we noticed that many 
+                variables had extremely large p-values, and thus did not possess much predictive power. Because of this, we then ran the model through 
+                an AIC optimization function on R, weeding out the least helpful predictors one at a time until the model with the lowest AIC was the 
+                current model. This removed 23 weak variables from the model, for a total of 11 variables in the smaller model. SHOW IMPORTANT VARIABLES??? 
+                This new model passed the model utility test. We then performed a nested models test on this model, comparing it to the full model, and 
+                found evidence that we could safely remove the weak predictors and use our smaller model for prediction. Finally, to confirm that the model 
+                was quality, we ran the Hosmer-Lemeshow goodness of fit test on it and found that it passed, showing that the model adequately fit.
+            </p>
+            <img class="img1" src="aic_last.png" alt="" srcset="">
+        </div>
+        <div class="fl w-100 pa4">
         </div>
     </div>
 
     <div class="vh-100 w-100 dt ph5">
         <h2 id="slide-title4" class="f1 fw6 slide-title">$ testing the model</h2>
+        <p class="tl lh-copy">
+            Now that we had an efficient model that had utility and fit well, we then wanted to test its predictive power. 
+            To do this, we first performed an 80/20 split, dividing the dataset into training and testing datasets. 
+            We then fit the model using the training data, and then used it to predict whether the tech workers in the dataset were likely to feel 
+            comfortable talking about a mental health order with their direct supervisors or not. </p>
+        <p class="tl lh-copy">
+            We found that this model predicted correctly on the test data with an accuracy of 83.9%. 
+            This is significantly larger than a random prediction of 50%, showing that by using this model, 
+            one can reliably predict whether a worker feels comfortable talking about a mental health order
+            with their direct supervisors or not. In turn, this indicates that the inferences that we can draw 
+            from our model have a higher chance of being relevant.
+        </p>
     </div>
     
     <iframe scrolling="no" class="overflow-hidden vh-75 center db aic-plot" src="aic.html" frameborder="0"></iframe>
     <iframe class="pl5 vh-75 w-75 center db" src="pca.html" frameborder="0"></iframe>
     <iframe class="pl5 vh-75 w-75 center db" src="distpreds.html" frameborder="0"></iframe>
 
+
+    <p class="lh-copy f6" id="l1">[1] About OSMI: <a href="https://osmihelp.org/about/about-osmi" class="link blue">https://osmihelp.org/about/about-osmi</a></p>
+    <p class="lh-copy f6" id="l1">[2] Mental Health in Tech Survey 2019: <a href="https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open" class="link blue">https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open</a></p>
     <script src="type_animation.js"></script>
 </body>
 </html>
