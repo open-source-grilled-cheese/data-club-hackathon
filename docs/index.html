@@ -78,7 +78,7 @@
                 Every year, OSMI conducts their <a class="link blue href="">Mental Health in Tech survey</a>, aiming to measure attitudes towards mental health in the tech workplace and examine the frequency of mental health disorders among tech workers<sup><a class="link blue" href="#l2">[2]</a></sup>.
             </p>
             <p class="tl f4 lh-copy">
-                We chose to analyze the 2016 OSMI Mental Health in Tech survey (full dataset available on the <a class="link blue" href="https://osmi.typeform.com/report/Ao6BTw/U76z">OSMI website</a>and <a class="link blue" href="https://www.kaggle.com/osmi/mental-health-in-tech-2016">Kaggle</a>, as the survey questions and number of respondents changed between years, and the 2016 survey had the most respondents overall (1,467 participants).
+                We chose to analyze the 2016 OSMI Mental Health in Tech survey (full dataset available on the <a class="link blue" href="https://osmi.typeform.com/report/Ao6BTw/U76z">OSMI website</a> and <a class="link blue" href="https://www.kaggle.com/osmi/mental-health-in-tech-2016">Kaggle</a>, as the survey questions and number of respondents changed between years, and the 2016 survey had the most respondents overall (1,467 participants).
             </p>
             <p class="tl f4 lh-copy">
                 Our goal was to answer one question: how comfortable are tech workers talking about mental illness in the workplace? 
@@ -88,7 +88,7 @@
             <a href="https://osmihelp.org/">
                 <img class="img1" src="osmi-logo-big.png" alt="" srcset="">
             </a>
-            <p class="tc f6 lh-copy">OSMI logo copyright © 2015-2020 Open Sourcing Mental Illness Ltd, and is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</p>
+            <p class="tc f6 lh-copy">OSMI logo copyright © 2015-2020 Open Sourcing Mental Illness Ltd, and is licensed under a <a class="link blue" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
         </div>
     </div>
     <!--
@@ -137,20 +137,25 @@
         </div>
         <div class="pa4 fl w-50">
             <img class="img1" src="aic_first.png" alt="" srcset="">
+            <p class="f6 tc">AIC model during first step</p>
         </div>
         <div class="pa4 fl w-50">
+            <img class="img1" src="aic_last.png" alt="" srcset="">
+            <p class="f6 tc">AIC model after last step</p>
+        </div>
+        <div class="fl w-100 pa4">
             <p class="tl lh-copy">
                 The first model we built was fit with the entire 34-variable dataset. While it passed the model utility test, we noticed that many 
                 variables had extremely large p-values, and thus did not possess much predictive power. Because of this, we then ran the model through 
                 an AIC optimization function on R, weeding out the least helpful predictors one at a time until the model with the lowest AIC was the 
-                current model. This removed 23 weak variables from the model, for a total of 11 variables in the smaller model. SHOW IMPORTANT VARIABLES??? 
+                current model. This removed 23 weak variables from the model, for a total of 11 variables in the smaller model.
+            </p>
+            <p class="tl lh-copy">
                 This new model passed the model utility test. We then performed a nested models test on this model, comparing it to the full model, and 
                 found evidence that we could safely remove the weak predictors and use our smaller model for prediction. Finally, to confirm that the model 
                 was quality, we ran the Hosmer-Lemeshow goodness of fit test on it and found that it passed, showing that the model adequately fit.
             </p>
-            <img class="img1" src="aic_last.png" alt="" srcset="">
-        </div>
-        <div class="fl w-100 pa4">
+            <iframe class="w-100 vh-100" src="pval.html" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -168,12 +173,19 @@
             with their direct supervisors or not. In turn, this indicates that the inferences that we can draw 
             from our model have a higher chance of being relevant.
         </p>
+        <iframe src="training.html" frameborder="0" class="w-50 vh-50 db center"></iframe>
+    </div>
+
+    <div class="vh-100 w-100 dt ph5">
+        <h2 id="slide-title5" class="f1 fw6 slide-title">$ insights</h2>
     </div>
     
+    <!--
     <iframe scrolling="no" class="overflow-hidden vh-75 center db aic-plot" src="aic.html" frameborder="0"></iframe>
     <iframe class="pl5 vh-75 w-75 center db" src="pca.html" frameborder="0"></iframe>
     <iframe class="pl5 vh-75 w-75 center db" src="distpreds.html" frameborder="0"></iframe>
 
+    -->
 
     <p class="lh-copy f6" id="l1">[1] About OSMI: <a href="https://osmihelp.org/about/about-osmi" class="link blue">https://osmihelp.org/about/about-osmi</a></p>
     <p class="lh-copy f6" id="l1">[2] Mental Health in Tech Survey 2019: <a href="https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open" class="link blue">https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open</a></p>
