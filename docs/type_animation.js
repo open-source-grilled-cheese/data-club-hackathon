@@ -22,6 +22,14 @@ const elemIds = [
         timer: null,
         text: "",
         index: 0
+    },
+    {
+        id: "slide-title4", 
+        typed: false,
+        cursor: false,
+        timer: null,
+        text: "",
+        index: 0
     }
 ];
     
