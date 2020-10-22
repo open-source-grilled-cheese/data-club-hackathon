@@ -106,7 +106,32 @@ fig = px.bar(train,
 fig.update_xaxes(nticks=10)
 fig.write_html("docs/training.html")
 
-figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html", "docs/aic.html", "docs/pval.html", "docs/training.html"]
+df = pd.read_csv("cleaned_mental-health-in-tech-2016.csv")
+short = df.loc[~df.selfEmployed].head(10)
+fig = go.Figure(data=go.Table(
+    header=dict(
+        values=list(df.columns[1:]),
+        line_color="#1ae834",
+        fill_color="black"
+    ),
+    cells=dict(
+        values=[short[x] for x in list(df.columns[1:])],
+        line_color="#1ae834",
+        fill_color="black"
+    )
+))
+fig.update_layout(
+    width=17000,
+    margin=dict(
+        l=0,
+        r=0,
+        b=0,
+        t=0
+    )
+)
+fig.write_html("docs/table.html")
+
+figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html", "docs/aic.html", "docs/pval.html", "docs/training.html", "docs/table.html"]
 
 # kinda hacky, but load the custom font into the generated HTML
 for figure in figs:
