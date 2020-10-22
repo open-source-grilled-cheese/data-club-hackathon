@@ -1,0 +1,21 @@
+Question,Estimate,Std. Error,z value,p-value
+(Intercept),-1.58468,0.42657,-3.715,0.000203
+techComp: TRUE,-0.67447,0.21561,-3.128,0.001759
+leaveDifficulty: Neither easy nor difficult,-0.06722,0.33063,-0.203,0.838905    
+leaveDifficulty: Somewhat difficult, 0.43377,0.33253,1.304,0.192082    
+leaveDifficulty: Somewhat easy, 0.78974,0.29913,2.640,0.008288
+leaveDifficulty: Very difficult,-1.17181,0.50938,-2.300,0.021422
+leaveDifficulty: Very easy, 0.88531,0.32253,2.745,0.006053
+discussMentalConseq: No, 1.42085,0.19931,7.129,1.01e-12
+discussMentalConseq: Yes, 0.05123,0.30298,0.169,0.865730
+discussCoworker: No,-1.67182,0.24298,-6.880,5.97e-12
+discussCoworker: Yes, 1.66715,0.20728,8.043,8.76e-16
+mentalVsPhysical: No, 0.08345,0.23683,0.352,0.724564    
+mentalVsPhysical: Yes, 0.84455,0.20161,4.189,2.80e-05
+familyHistory: No,-0.14390,0.25252,-0.570,0.568770    
+familyHistory: Yes, 0.29708,0.24061,1.235,0.216937    
+workRemote: Never,-0.27609,0.26630,-1.037,0.299853    
+workRemote: Sometimes, 0.21590,0.22726,0.950,0.342096    
+supervisor: TRUE, 0.44793,0.20955,2.138,0.032547
+support: TRUE, 0.44715,0.29783,1.501,0.133258    
+onePersonShop: TRUE,-1.93509,0.68754,-2.815,0.004885

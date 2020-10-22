@@ -1,0 +1,20 @@
+Question,Slope
+techCompTRUE,  0.67447
+as.factor(leaveDifficulty)Neither easy nor difficult,  0.06722 
+as.factor(leaveDifficulty)Somewhat difficult, -0.43377
+as.factor(leaveDifficulty)Somewhat easy, -0.78974 
+as.factor(leaveDifficulty)Very difficult, 1.17181
+as.factor(leaveDifficulty)Very easy, -0.88531
+as.factor(discussMentalConseq)No, -1.42085
+as.factor(discussMentalConseq)Yes, -0.05123
+as.factor(discussCoworker)No, 1.67182 
+as.factor(discussCoworker)Yes, -1.66715 
+as.factor(mentalVsPhysical)No, -0.08345 
+as.factor(mentalVsPhysical)Yes, -0.84455 
+as.factor(familyHistory)No, 0.14390   
+as.factor(familyHistory)Yes, -0.29708 
+as.factor(workRemote)Never, 0.27609 
+as.factor(workRemote)Sometimes, -0.21590 
+supervisorTRUE, -0.44793 
+supportTRUE, -0.44715 
+onePersonShopTRUE, 1.93509

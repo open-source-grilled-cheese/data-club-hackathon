@@ -32,7 +32,7 @@ pio.templates.default = "plotly_dark+mhit"
 # create the bar graph
 gender = df.gender.value_counts()
 fig = px.bar(gender, 
-    y=["Male", "Female", "Gender\nminority"], 
+    y=["Male", "Female", "Gender minority"], 
     x=gender.array, 
     title="Responses by Gender", 
     orientation='h', 
@@ -86,15 +86,26 @@ fig = px.bar(aic.sort_values(by="Slope"),
     x="Question", 
     y="Slope", 
     title="Logistic Regression Model Weights")
-fig.update_layout(
-    width=1200,
-    margin=dict(
-        r=50
-    )
-)
 fig.write_html("docs/aic.html")
 
-figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html", "docs/aic.html"]
+pvals = pd.read_csv('logistic_regression.csv')
+fig = px.bar(pvals.sort_values(by='p-value'), 
+    x="Question",y="p-value", 
+    log_y=True,
+    title="P-values for predictor variables"
+)
+fig.write_html("docs/pval.html")
+
+train = pd.read_csv('best_calc.csv')
+fig = px.bar(train,
+    title="Accuracy of Model on Training/Validation Datasets",
+    y="Dataset",
+    x="Prediction Accuracy (%)",
+    orientation="h"
+)
+fig.write_html("docs/training.html")
+
+figs = ["docs/gender.html", "docs/company_size.html", "docs/pca.html", "docs/aic.html", "docs/pval.html", "docs/training.html"]
 
 # kinda hacky, but load the custom font into the generated HTML
 for figure in figs:
