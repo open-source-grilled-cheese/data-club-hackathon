@@ -38,14 +38,16 @@
         p {
             text-indent: 0em;
         }
+        .double-graph {
+            column-count: 2;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mental health in tech</title>
 </head>
 <body>
-
-    <div class="vh-100 w-100 dt cover">
+    <div class="vh-100 mw-100 dt cover center">
         <h1 class="headline f-headline fw6 lh-title tc">analyzing mental health<br>in the tech industry</h1>
         <p class="tc tagline">We looked at over 1400 responses to the 2016 OSMI Mental Health in Tech survey, and this is what we found.</p>
         <div class="arrows">
@@ -73,11 +75,12 @@
         </div>
     </div>
 
-    <div class="vh-100 w-100 dt ph5">
-        <div class="ma0 pa0 typewriter">
-            <h2 id="slide-title1" class="f1 fw6">$ the dataset</h2>
-        </div>
-        <div class="fl w-50 pa4">
+    <div class="ma0 pa0 w-100 dt ph5">
+        <h2 id="slide-title1" class="f1 fw6">$ the dataset</h2>
+    </div>
+
+    <div class="vh-100 w-100 dt ph5-l ph1">
+        <div class="fl w-50-l w-100 pa4-l pa0">
             <p class="tl f4 lh-copy">
                 <a class="link blue" href="https://osmihelp.org/">Open Sourcing Mental Illness (OSMI)</a> is a non-profit corporation dedicated to raising awareness, educating, and providing resources to support mental wellness in the tech and open source communities.<sup><a class="link blue" href="#l1">[1]</a></sup>
                 Every year, OSMI conducts their <a class="link blue href="">Mental Health in Tech survey</a>, aiming to measure attitudes towards mental health in the tech workplace and examine the frequency of mental health disorders among tech workers<sup><a class="link blue" href="#l2">[2]</a></sup>.
@@ -89,7 +92,7 @@
                 Our goal was to answer one question: how comfortable are tech workers talking about mental illness in the workplace? 
             </p>
         </div>
-        <div class="pa4 fl w-50">
+        <div class="pa4 fl w-50-l w-100-m">
             <a href="https://osmihelp.org/">
                 <img class="img1" src="img/osmi-logo-big.png" alt="" srcset="">
             </a>
@@ -97,14 +100,18 @@
         </div>
     </div>
 
-    <iframe class="ph5 vh-50 w-40" src="figs/gender.html" frameborder="0"></iframe>
-    <iframe class="ph5 vh-50 w-40" src="figs/company_size.html" frameborder="0"></iframe>
-
+    <div class="vh-50 w-50-l w-100 fl pa0">
+        <iframe class="h-100 w-100 db" src="figs/gender.html" frameborder="0"></iframe>
+    </div>
+    <div class="vh-50 w-50-l w-100 fl pa0">
+        <iframe class="h-100 w-100 db" src="figs/company_size.html" frameborder="0"></iframe>
+    </div>
+    
+    <div class="w-100 ph5">
+        <h2 id="slide-title2" class="f1 fw6 slide-title">$ data cleaning</h2>
+    </div>
     <div class="vh-100 w-100 dt ph5">
-        <div class="fl w-100">
-            <h2 id="slide-title2" class="f1 fw6 slide-title">$ data cleaning</h2>
-        </div>
-        <div class="fl w-50">
+        <div class="fl w-50-l w-100">
             <p class="lh-copy normal f4">
                 We used <a class="link blue" href="https://python.org">Python</a> with the 
                 <a class="link blue" href="https://pandas.pydata.org">pandas</a> library to clean and prepare our data for analysis -- the script we wrote is on 
@@ -124,7 +131,7 @@
             </p>
 
         </div>
-        <div class="tc fl w-50 h-75">
+        <div class="tc fl w-50-l w-100 vh-75 mb5">
             <iframe src="figs/table.html" frameborder="0" class="w-100 h-100"></iframe>
             <p class="lh-copy normal f7">Summary of transformed data. Mapping of survey questions to column headers can be found on <a class="link blue" href="https://github.com/open-source-grilled-cheese/data-club-hackathon/blob/master/mapping.txt">repository</a>.</p>
         </div>
@@ -139,11 +146,12 @@
                 “No” on the survey.
             </p>
         </div>
-        <div class="pa4 fl w-50 tc">
+
+        <div class="pa4 fl w-50-l w-100 tc">
             <img class="img1" src="img/aic_first.png" alt="" srcset="">
             <p class="f6">AIC model during first step</p>
         </div>
-        <div class="pa4 fl w-50 tc">
+        <div class="pa4 fl w-50-l w-100 tc">
             <img class="img1" src="img/aic_last.png" alt="" srcset="">
             <p class="f6">AIC model after last step</p>
         </div>
@@ -159,9 +167,10 @@
                 found evidence that we could safely remove the weak predictors and use our smaller model for prediction. Finally, to confirm that the model 
                 was quality, we ran the Hosmer-Lemeshow goodness of fit test on it and found that it passed, showing that the model adequately fit.
             </p>
-            <iframe class="w-100 vh-100" src="figs/pval.html" frameborder="0"></iframe>
         </div>
     </div>
+
+    <iframe class="w-100 vh-100 mb5" src="figs/pval.html" frameborder="0"></iframe>
 
     <div class="vh-100 w-100 dt ph5">
         <h2 id="slide-title4" class="f1 fw6 slide-title">$ testing the model</h2>
@@ -182,7 +191,7 @@
 
     <div class="vh-100 w-100 dt ph5">
         <h2 id="slide-title5" class="f1 fw6 slide-title">$ insights</h2>
-        <div class="w-50 center">
+        <div class="w-50-l w-100 center">
             <p class="tl lh-copy">
                 These models and analysis are only valuable insofar as they inform actionable steps towards meaningful workplace reform.
                 Here, those steps are informed by significant and insignificant trends working together to paint a complete picture. 
@@ -234,8 +243,8 @@
 
     -->
 
-    <p class="lh-copy f6" id="l1">[1] About OSMI: <a href="https://osmihelp.org/about/about-osmi" class="link blue">https://osmihelp.org/about/about-osmi</a></p>
-    <p class="lh-copy f6" id="l1">[2] Mental Health in Tech Survey 2019: <a href="https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open" class="link blue">https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open</a></p>
+    <p class="ph2 lh-copy f6" id="l1">[1] About OSMI: <a href="https://osmihelp.org/about/about-osmi" class="link blue">https://osmihelp.org/about/about-osmi</a></p>
+    <p class="ph2 lh-copy f6" id="l1">[2] Mental Health in Tech Survey 2019: <a href="https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open" class="link blue">https://osmihelp.org/blog/2019-mental-health-in-tech-survey-now-open</a></p>
 
     <div class="w-100 ph5 center">
         <br>
